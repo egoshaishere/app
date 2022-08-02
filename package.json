@@ -8,7 +8,10 @@
   },
   "dependencies": {
     "core-js": "^3.8.3",
+    "draggable-vue-directive": "^2.1.0",
     "vue": "^2.6.14",
+    "vue-drag-element": "^1.0.3",
+    "vue-drag-move": "^1.0.1",
     "vue-router": "^3.5.1",
     "vuex": "^3.6.2"
   },
