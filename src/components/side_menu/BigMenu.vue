@@ -1,6 +1,5 @@
 <template>
     <CardCreater />
-  
 </template>
 
 <script>
@@ -11,11 +10,8 @@ export default {
     components: {
         CardCreater
     }
-
-
 }
 </script>
 
 <style>
-
 </style>

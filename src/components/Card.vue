@@ -15,8 +15,9 @@
 </template>
 
 <script>
-import { mapActions } from "vuex";
+import { mapActions, mapMutations } from "vuex";
 import { Draggable } from "draggable-vue-directive";
+//https://www.vuetoolbox.com/projects/draggable-vue-directive
 
 export default {
   name: "Card",
@@ -38,11 +39,18 @@ export default {
     };
   },
   methods: {
-    ...mapActions(["deleteCard"]),
+    ...mapMutations({
+      openEdit: "edit/openEdit",
+      setEditId: "edit/setEditId"
+      }),
+    ...mapActions({deleteCard: "cards/deleteCard"}),
     del() {
       this.deleteCard(this.card.id);
     },
-    edit() {},
+    edit() {
+      this.setEditId(this.card.id)
+      this.openEdit()
+    },
     start(point) {
       console.log(point);
     },
@@ -58,19 +66,20 @@ export default {
 
 <style>
 .card {
-  border: solid 2px black;
+  border: solid 1px #42b983;
   border-radius: 10px;
   width: 200px;
   margin: 10px;
+  box-shadow: 5px 5px 4px -1px rgba(0, 0, 0, 0.58);
 }
 
 .header__card {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
-  background-color: black;
+  background-color: #42b983;
   color: aliceblue;
-  border-radius: 10px 10px 0px 0px;
+  border-radius: 8px 8px 0px 0px;
 }
 
 .delete__card {

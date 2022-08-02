@@ -18,13 +18,12 @@ export default {
     Card,
   },
   computed: {
-    ...mapGetters(["allCards"]),
+    ...mapGetters({allCards: "cards/allCards"}),
   },
 };
 </script>
 
 <style>
-
 .cards__container {
   display: flex;
   align-items: center;

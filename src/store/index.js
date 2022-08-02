@@ -3,8 +3,39 @@ import Vuex from 'vuex'
 
 Vue.use(Vuex)
 
-export default new Vuex.Store({
-  state: {
+const modalModule = {
+  namespaced: true,
+  state: () => ({
+    editModal: {
+      isOpen: false,
+      editId: null
+    },
+  }),
+  mutations: {
+    openEdit(state) {
+      state.editModal.isOpen = true
+    },
+    closeEdit(state) {
+      state.editModal.isOpen = false
+    },
+    setEditId(state, payload) {
+      state.editModal.editId = payload
+    }
+  },
+  actions: {},
+  getters: {
+    getEditModalStatus: (state) => {
+      return state.editModal.isOpen
+    },
+    getEditId: (state) => {
+      return state.editModal.editId
+    }
+  }
+}
+
+const cardsModule = {
+  namespaced: true,
+  state: () => ({
     cards: [
       {
         id: 1,
@@ -31,23 +62,8 @@ export default new Vuex.Store({
         title: "its title in 5 card",
         body: "i dont care"
       },
-    ]
-  },
-  getters: {
-    allCards: state => {
-      return state.cards
-    },
-    cardsCount: (state, getters) => {
-      return getters.allCards.length
-    },
-    getNextId: (state, getters) => {
-      return getters.cardsCount + 1
-    },
-    getCardById: (state) => (id) => {
-      return state.cards.filter(card => card.id === id)
-    },
-
-  },
+    ],
+  }),
   mutations: {
     add_card(state, card) {
       state.cards.push(card);
@@ -55,6 +71,13 @@ export default new Vuex.Store({
     delete_card(state, id) {
       state.cards = state.cards.filter((card) => card.id != id);
     },
+    edit_card(state, payload) {
+      console.log("edit_card", payload)
+      let test = state.cards.find(card => card.id === payload.id)
+      test.title = payload.title
+      test.body = payload.body
+      console.log('target', test.id)
+    }
   },
   actions: {
     addCard({ commit }, card) {
@@ -65,7 +88,45 @@ export default new Vuex.Store({
       console.log('action - delCard')
       commit("delete_card", id);
     },
+    editCard({commit}, payload){
+      console.log('action - editCard', {...payload})
+      commit("edit_card", payload)
+    }
   },
+  getters: {
+    allCards: state => {
+      return state.cards
+    },
+    cardsCount: (state, getters) => {
+      return getters.allCards.length
+    },
+    getCardsIds: (state) => {
+      let idList = []
+      state.cards.map(card => {
+        idList.push(card.id)
+      })
+      return idList
+    },
+    getNextId: (state, getters) => {
+      let ID_LIST = getters.getCardsIds
+      let maxValue = getters.cardsCount + 1
+      for (let i = 1; i <= maxValue; i++) {
+        let res = ID_LIST.indexOf(i)
+        if (res === -1) {
+          return i
+        }
+      }
+      return maxValue
+    },
+    getCardById: state => id => {
+      return state.cards.find(card => card.id === id)
+    }
+  }
+}
+
+export default new Vuex.Store({
   modules: {
+    edit: modalModule,
+    cards: cardsModule
   }
 })

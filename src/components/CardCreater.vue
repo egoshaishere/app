@@ -13,10 +13,7 @@
           <input type="text" v-model="body" />
         </fieldset>
         <button class="create_button" v-on:click="create">Create</button>
-
         <button v-on:click="test">getNextId</button>
-
-
       </fieldset>
     </div>
   </div>
@@ -34,10 +31,10 @@ export default {
     };
   },
   computed: {
-    ...mapGetters(["cardsCount", "getNextId"]),
+    ...mapGetters({cardsCount:"cards/cardsCount", getNextId: "cards/getNextId"}),
   },
   methods: {
-    ...mapActions(['addCard']),
+    ...mapActions({addCard:'cards/addCard'}),
     test(){
       console.log('test pressed')
       console.log(this.getNextId)

@@ -37,18 +37,14 @@ export default {
 .side_menu__container {
   padding: 5px;
   background: #42b983;
-  /* height: 100vh; */
-  height: 100%;
-
+  height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
-
   box-shadow: 1px 4px 5px #00000070;
 }
 
 .hide_show {
-  /* padding: 3px; */
   cursor: pointer;
   border: solid 1px black;
   border-radius: 10px;
