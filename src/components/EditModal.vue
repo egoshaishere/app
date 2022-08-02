@@ -11,6 +11,9 @@
 
             <div>{{ cardOld.body }}</div>
             <input type="text" v-model="newCardData.body" />
+
+            <div>{{ cardOld.status }}</div>
+            <input type="text" v-model="newCardData.status" />
           </div>
 
           <div class="modal-footer">
@@ -38,6 +41,7 @@ export default {
       newCardData: {
         title: "",
         body: "",
+        status: "",
       },
     };
   },
@@ -55,17 +59,18 @@ export default {
       let resultObject = {
         id: this.idCard,
         title: this.newCardData.title,
-        body: this.newCardData.body
-      }
-      this.editCard(resultObject)
+        body: this.newCardData.body,
+        status: this.newCardData.status
+      };
+      this.editCard(resultObject);
       this.closeEdit();
     },
     ...mapGetters({
       getEditId: "edit/getEditId",
     }),
-    returnId(){
-      return this.idCard
-    }
+    returnId() {
+      return this.idCard;
+    },
   },
   computed: {
     ...mapGetters({

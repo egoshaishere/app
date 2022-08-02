@@ -11,7 +11,7 @@ export default {
 <style>
 .small_menu__container {
   background: #42b983;
-  width: 50px;
+  width: 0px;
   height: 100px;
 }
 </style>

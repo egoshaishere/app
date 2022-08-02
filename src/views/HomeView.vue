@@ -2,6 +2,7 @@
   <div class="home">
     <SideMenu id="menu" />
     <CardList id="list" />
+    <Board />
     <EditModal v-if="showModal" @close="showModal = false" />
   </div>
 </template>
@@ -10,6 +11,7 @@
 import CardList from '@/components/CardList.vue'
 import SideMenu from '@/components/side_menu/SideMenu.vue'
 import EditModal from '@/components/EditModal.vue'
+import Board from '@/components/board/Board.vue'
 import { mapGetters } from 'vuex'
 
 export default {
@@ -17,7 +19,8 @@ export default {
   components: {
     CardList,
     SideMenu,
-    EditModal
+    EditModal,
+    Board
   },
   methods: {
     ...mapGetters({getEditModalStatus: "edit/getEditModalStatus"})

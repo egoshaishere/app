@@ -71,6 +71,7 @@ export default {
   width: 200px;
   margin: 10px;
   box-shadow: 5px 5px 4px -1px rgba(0, 0, 0, 0.58);
+  background-color: white;
 }
 
 .header__card {

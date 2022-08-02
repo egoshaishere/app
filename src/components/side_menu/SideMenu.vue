@@ -1,8 +1,8 @@
 <template>
   <div class="side_menu__container">
     <div class="hide_show" v-on:click="hide">
-      <div v-if="isOpen">&#9756;</div>
-      <div v-if="!isOpen">&#9758;</div>
+      <div class="side_menu__button" v-if="isOpen">&#9756;</div>
+      <div class="side_menu__button" v-if="!isOpen">&#9758;</div>
     </div>
     <BigMenu v-if="isOpen" />
     <SmallMenu v-if="!isOpen" />
@@ -46,9 +46,14 @@ export default {
 
 .hide_show {
   cursor: pointer;
-  border: solid 1px black;
+  border: solid 1.5px rgb(255, 255, 255);
   border-radius: 10px;
   width: 30px;
   height: 25px;
+}
+
+.side_menu__button {
+  color: #ffffff;
+  font-weight: 550;
 }
 </style>
